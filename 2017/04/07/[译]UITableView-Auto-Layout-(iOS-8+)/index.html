@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：in">
+<meta name="description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta name="keywords" content="iOS,autolayout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableView-Auto-Layout-(iOS 8+)">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/[译]UITableView-Auto-Layout-(iOS-8+)/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：in">
+<meta property="og:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-8e0ac86893b18698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-09T13:18:55.597Z">
+<meta property="og:updated_time" content="2017-04-09T13:21:19.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView-Auto-Layout-(iOS 8+)">
-<meta name="twitter:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：in">
+<meta name="twitter:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-8e0ac86893b18698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -346,10 +346,10 @@
       
 
       
-        <a id="more"></a>
-<blockquote>
+        <blockquote>
 <p>翻译自stack overflow的一个<a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930" target="_blank" rel="external">回答</a>，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="概念描述"><a href="#概念描述" class="headerlink" title="概念描述"></a>概念描述</h2><p>无论你是哪个iOS开发版本，下面前2个步骤都适用。</p>
 <h3 id="设置-amp-添加约束"><a href="#设置-amp-添加约束" class="headerlink" title="设置 &amp; 添加约束"></a>设置 &amp; 添加约束</h3><blockquote>
 <p>content-hugging and compression-resistance 以下简称CHCR；<br>固有内容尺寸：intrinsic content size；</p>
