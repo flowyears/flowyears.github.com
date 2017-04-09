@@ -247,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/08/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/07/详解自动布局（Masonry）实现九宫格/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="flowyears">
@@ -269,8 +269,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/08/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2017/04/07/详解自动布局（Masonry）实现九宫格/" itemprop="url">
+                  详解自动布局(Masonry)实现九宫格
                 </a>
               
             
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T21:28:24+08:00">
-                2017-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
+                2017-04-07
               </time>
             
 
@@ -296,6 +296,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动布局/" itemprop="url" rel="index">
+                    <span itemprop="name">自动布局</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -323,10 +345,158 @@
 
       
         
-          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+          <p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/08/hello-world/#more" rel="contents">
+            <a class="btn" href="/2017/04/07/详解自动布局（Masonry）实现九宫格/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="flowyears">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="流月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/07/《Auto-Layout-Guide》笔记/" itemprop="url">
+                  《Auto-Layout-Guide》笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动布局/" itemprop="url" rel="index">
+                    <span itemprop="name">自动布局</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>###概念</p>
+<p>####约束优先级<br>所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/07/《Auto-Layout-Guide》笔记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -521,7 +691,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/06/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="flowyears">
@@ -543,8 +713,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/07/《Auto-Layout-Guide》笔记/" itemprop="url">
-                  《Auto-Layout-Guide》笔记
+                <a class="post-title-link" href="/2017/04/06/hello-world/" itemprop="url">
+                  Hello World
                 </a>
               
             
@@ -560,8 +730,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
-                2017-04-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T08:55:29+08:00">
+                2017-04-06
               </time>
             
 
@@ -570,28 +740,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动布局/" itemprop="url" rel="index">
-                    <span itemprop="name">自动布局</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -619,158 +767,10 @@
 
       
         
-          <p>###概念</p>
-<p>####约束优先级<br>所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。</p>
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/07/《Auto-Layout-Guide》笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/07/详解自动布局（Masonry）实现九宫格/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="flowyears">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="流月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/详解自动布局（Masonry）实现九宫格/" itemprop="url">
-                  详解自动布局(Masonry)实现九宫格
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
-                2017-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动布局/" itemprop="url" rel="index">
-                    <span itemprop="name">自动布局</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/07/详解自动布局（Masonry）实现九宫格/#more" rel="contents">
+            <a class="btn" href="/2017/04/06/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -873,10 +873,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
