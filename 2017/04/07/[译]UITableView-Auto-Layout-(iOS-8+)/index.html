@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
+<meta name="description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta name="keywords" content="iOS,autolayout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableView-Auto-Layout-(iOS 8+)">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/[译]UITableView-Auto-Layout-(iOS-8+)/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
+<meta property="og:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-8e0ac86893b18698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-09T08:46:50.788Z">
+<meta property="og:updated_time" content="2017-04-09T08:50:19.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView-Auto-Layout-(iOS 8+)">
-<meta name="twitter:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
+<meta name="twitter:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-8e0ac86893b18698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -209,7 +209,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -286,7 +286,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
                 2017-04-07
@@ -307,7 +307,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -349,6 +349,7 @@
         <blockquote>
 <p>翻译自stack overflow的一个<a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930" target="_blank" rel="external">回答</a>，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="概念描述"><a href="#概念描述" class="headerlink" title="概念描述"></a>概念描述</h2><p>无论你是哪个iOS开发版本，下面前2个步骤都适用。</p>
 <h3 id="设置-amp-添加约束"><a href="#设置-amp-添加约束" class="headerlink" title="设置 &amp; 添加约束"></a>设置 &amp; 添加约束</h3><blockquote>
 <p>content-hugging and compression-resistance 以下简称CHCR；<br>固有内容尺寸：intrinsic content size；</p>
@@ -414,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/07/《Auto-Layout-Guide》笔记/" rel="next" title="《Auto-Layout-Guide》笔记">
-                <i class="fa fa-chevron-left"></i> 《Auto-Layout-Guide》笔记
+              <a href="/2017/04/07/详解自动布局（Masonry）实现九宫格/" rel="next" title="详解自动布局(Masonry)实现九宫格">
+                <i class="fa fa-chevron-left"></i> 详解自动布局(Masonry)实现九宫格
               </a>
             
           </div>
@@ -423,6 +424,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/07/《Auto-Layout-Guide》笔记/" rel="prev" title="《Auto-Layout-Guide》笔记">
+                《Auto-Layout-Guide》笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,10 +476,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -495,7 +500,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -506,7 +511,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">Kategorien</span>
               
             </div>
           
@@ -517,7 +522,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -583,7 +588,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
