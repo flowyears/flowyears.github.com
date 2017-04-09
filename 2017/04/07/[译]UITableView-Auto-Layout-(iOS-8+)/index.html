@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,autolayout," />
 
 
 
@@ -88,14 +88,14 @@
 
 
 <meta name="description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
-<meta name="keywords">
+<meta name="keywords" content="iOS,autolayout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableView-Auto-Layout-(iOS 8+)">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/[译]UITableView-Auto-Layout-(iOS-8+)/index.html">
 <meta property="og:site_name" content="流月">
 <meta property="og:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-8e0ac86893b18698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-08T16:16:45.475Z">
+<meta property="og:updated_time" content="2017-04-09T08:46:50.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView-Auto-Layout-(iOS 8+)">
 <meta name="twitter:description" content="翻译自stack overflow的一个回答，对于iOS自动布局很有用处。翻译水平有限，且现在公司的app都是iOS 8+，所以只翻译了iOS 8+的部分。如有错误，欢迎指正！谢谢！  概念描述无论你是哪个iOS开发版本，下面前2个步骤都适用。 设置 &amp;amp; 添加约束 content-hugging and compression-resistance 以下简称CHCR；固有内容尺寸：int">
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -209,7 +209,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -286,7 +286,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
                 2017-04-07
@@ -307,7 +307,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -399,6 +399,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS-autolayout/" rel="tag"># iOS,autolayout</a>
+          
+        </div>
+      
 
       
         
@@ -408,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/07/详解自动布局（Masonry）实现九宫格/" rel="next" title="详解自动布局(Masonry)实现九宫格">
-                <i class="fa fa-chevron-left"></i> 详解自动布局(Masonry)实现九宫格
+              <a href="/2017/04/07/《Auto-Layout-Guide》笔记/" rel="next" title="《Auto-Layout-Guide》笔记">
+                <i class="fa fa-chevron-left"></i> 《Auto-Layout-Guide》笔记
               </a>
             
           </div>
@@ -465,10 +471,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -489,7 +495,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -500,11 +506,20 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
           
 
         </nav>
@@ -568,7 +583,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
