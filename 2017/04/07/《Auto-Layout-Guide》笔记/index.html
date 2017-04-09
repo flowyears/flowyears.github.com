@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="###概念 ####约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta name="description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。  注意：不要强迫使用所有1000个优先级值。实际上，优先级通常聚集在系统定义的低（250），中（500），高（750）和必须（1000）周围。可能需要让约束的优先级比这些值高或低1-2点，来帮助阻止绑定（teis）。如果优先级远远超出这些值，可能需要重新检查布局逻辑。  固有内容尺寸(Intri">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Auto-Layout-Guide》笔记">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="###概念 ####约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta property="og:description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。  注意：不要强迫使用所有1000个优先级值。实际上，优先级通常聚集在系统定义的低（250），中（500），高（750）和必须（1000）周围。可能需要让约束的优先级比这些值高或低1-2点，来帮助阻止绑定（teis）。如果优先级远远超出这些值，可能需要重新检查布局逻辑。  固有内容尺寸(Intri">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-3843819524c2a48a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e2ef14402782078f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-2cde8b491ccabb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -101,10 +101,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-3c95091daf09a074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-753104f642a87016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-7c68e65d852366cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-09T08:58:43.001Z">
+<meta property="og:updated_time" content="2017-04-09T13:19:00.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Auto-Layout-Guide》笔记">
-<meta name="twitter:description" content="###概念 ####约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta name="twitter:description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。  注意：不要强迫使用所有1000个优先级值。实际上，优先级通常聚集在系统定义的低（250），中（500），高（750）和必须（1000）周围。可能需要让约束的优先级比这些值高或低1-2点，来帮助阻止绑定（teis）。如果优先级远远超出这些值，可能需要重新检查布局逻辑。  固有内容尺寸(Intri">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-3843819524c2a48a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -352,13 +352,12 @@
       
 
       
-        <p>###概念</p>
-<p>####约束优先级<br>所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。</p>
-<a id="more"></a>
+        <a id="more"></a>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="约束优先级"><a href="#约束优先级" class="headerlink" title="约束优先级"></a>约束优先级</h4><p>所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。</p>
 <blockquote>
 <p>注意：不要强迫使用所有1000个优先级值。实际上，优先级通常聚集在系统定义的低（250），中（500），高（750）和必须（1000）周围。可能需要让约束的优先级比这些值高或低1-2点，来帮助阻止绑定（teis）。如果优先级远远超出这些值，可能需要重新检查布局逻辑。</p>
 </blockquote>
-<p>####固有内容尺寸(Intrinsic Content Size)<br>有些视图根据当前给定的内容有个自然的尺寸。这个尺寸被称为<code>固有内容尺寸(Intrinsic Content Size)</code>。</p>
+<h4 id="固有内容尺寸-Intrinsic-Content-Size"><a href="#固有内容尺寸-Intrinsic-Content-Size" class="headerlink" title="固有内容尺寸(Intrinsic Content Size)"></a>固有内容尺寸(Intrinsic Content Size)</h4><p>有些视图根据当前给定的内容有个自然的尺寸。这个尺寸被称为<code>固有内容尺寸(Intrinsic Content Size)</code>。</p>
 <p>不是所有视图都有固有内容尺寸。对于有固有内容尺寸的视图，<strong>它可以定义视图的高度，宽度或者两者都定义</strong>。下面的表格列出了一些例子（这里只标注iOS的，mac OS已删除）。</p>
 <table>
 <thead>
@@ -386,7 +385,7 @@
 </tr>
 </tbody>
 </table>
-<p>####Content hugging &amp; Compression resistance<br>自动布局使用了一对约束来呈现一个视图的每个维度。content hugging向内抱紧视图，使紧贴内容（简称抱紧我）。压缩阻力（compression resistance）向外推视图，使其不剪辑内容（简称别挤我）。</p>
+<h4 id="Content-hugging-amp-Compression-resistance"><a href="#Content-hugging-amp-Compression-resistance" class="headerlink" title="Content hugging &amp; Compression resistance"></a>Content hugging &amp; Compression resistance</h4><p>自动布局使用了一对约束来呈现一个视图的每个维度。content hugging向内抱紧视图，使紧贴内容（简称抱紧我）。压缩阻力（compression resistance）向外推视图，使其不剪辑内容（简称别挤我）。</p>
 <p>Content hugging优先级越高，抱的越紧；compression resistance优先级越高，压缩阻力越大，内容越不容易被剪辑。</p>
 <p>下面举两个例子说明一下：</p>
 <ul>
@@ -431,24 +430,22 @@
 </tr>
 </tbody>
 </table>
-<p>###工具</p>
-<p>####Align工具<br>Align工具可以快速对齐布局中的项。选择想要<strong>对齐</strong>的项，然后单击Align工具。界面生成器显示一个弹出框视图，其中包括一些可能的对齐选项。</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><h4 id="Align工具"><a href="#Align工具" class="headerlink" title="Align工具"></a>Align工具</h4><p>Align工具可以快速对齐布局中的项。选择想要<strong>对齐</strong>的项，然后单击Align工具。界面生成器显示一个弹出框视图，其中包括一些可能的对齐选项。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/760391-2a0c61da751892b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>####Pin工具<br>Pin工具可以快速定义视图相对于它<strong>邻居</strong>的位置，或者快速定义视图的尺寸。选择想要固定(pin)位置或尺寸的项，然后点击Pin工具。界面生成器显示一个弹出框视图，其中包括一些选项。</p>
+<h4 id="Pin工具"><a href="#Pin工具" class="headerlink" title="Pin工具"></a>Pin工具</h4><p>Pin工具可以快速定义视图相对于它<strong>邻居</strong>的位置，或者快速定义视图的尺寸。选择想要固定(pin)位置或尺寸的项，然后点击Pin工具。界面生成器显示一个弹出框视图，其中包括一些选项。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/760391-3c95091daf09a074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>弹出框顶部区域可以固定选中项的开头，顶部，结尾或底部边缘到它最近的邻居。关联的数字表示画布中两个项之间的当前间隔。可以输入自定义的间隔，或者点击三角形，设置它被约束到哪个视图，或者选择标准间隔。Constrain to margins复选框决定约束使用父视图的页边留白（margin）还是它的边缘（edge）。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/760391-753104f642a87016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>Resolve Auto Layout Issues工具<br>Resolve Auto Layout Issues工具提供了一些选项用来修复常见的自动布局问题。菜单的上半部分只影响当前选中的视图。下半部分选项影响场景中所有视图。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/760391-7c68e65d852366cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>可以使用这个工具更新视图的框架（frame），基于当前的约束，或者根据视图在画布中的当前位置更新约束。还可以添加缺失的约束，清理约束，或者重置视图为界面生成器推荐的约束。</p>
-<p>###调试技巧<br>在自动布局过程中，出现错误是经常的事情，自动布局中的错误主要分为三个类型：</p>
+<h3 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h3><p>在自动布局过程中，出现错误是经常的事情，自动布局中的错误主要分为三个类型：</p>
 <ul>
 <li><strong>不可满足的（unsatisfiable）布局。</strong>布局没有有效的解。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1" target="_blank" rel="external">不可满足的布局</a>。</li>
 <li><strong>有歧义的布局。</strong>你的布局有两个或多个可能的解。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/AmbiguousLayouts.html#//apple_ref/doc/uid/TP40010853-CH18-SW1" target="_blank" rel="external">有歧义的布局</a>。</li>
 <li><strong>逻辑错误。</strong>布局逻辑中存在bug。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/LogicalErrors.html#//apple_ref/doc/uid/TP40010853-CH20-SW1" target="_blank" rel="external">逻辑错误</a>。</li>
 </ul>
 <p>调试方法：<br>查看控制台的打印信息，有时候打印的信息比较多，不方便看，添加标识符，是一个很好的方法。</p>
-<p>###高级自动布局</p>
-<p>####推迟的布局过程<br>自动布局安排一个布局过程在不久的将来取代直接更新受影响的view的frame。该推迟的过程更新布局的约束，然后计算视图层次结构中所有视图的frame。</p>
+<h3 id="高级自动布局"><a href="#高级自动布局" class="headerlink" title="高级自动布局"></a>高级自动布局</h3><h4 id="推迟的布局过程"><a href="#推迟的布局过程" class="headerlink" title="推迟的布局过程"></a>推迟的布局过程</h4><p>自动布局安排一个布局过程在不久的将来取代直接更新受影响的view的frame。该推迟的过程更新布局的约束，然后计算视图层次结构中所有视图的frame。</p>
 <p>可以通过调用<a href="https://developer.apple.com/reference/uikit/uiview/1622601-setneedslayout" target="_blank" rel="external">setNeedsLayout</a>方法或者<a href="https://developer.apple.com/reference/uikit/uiview/1622450-setneedsupdateconstraints" target="_blank" rel="external">setNeedsUpdateConstraints</a>方法，调度自己的推迟的布局过程。</p>
 <p>推迟的布局过程实际涉及视图层级结构的两个过程：<br>1.更新过程根据需要更新约束。<br>2.布局过程根据需要重新定位视图的frame。</p>
 <ol>
@@ -643,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量改变"><span class="nav-number">1.</span> <span class="nav-text">批量改变</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约束优先级"><span class="nav-number">1.1.</span> <span class="nav-text">约束优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固有内容尺寸-Intrinsic-Content-Size"><span class="nav-number">1.2.</span> <span class="nav-text">固有内容尺寸(Intrinsic Content Size)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-hugging-amp-Compression-resistance"><span class="nav-number">1.3.</span> <span class="nav-text">Content hugging & Compression resistance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Align工具"><span class="nav-number">2.1.</span> <span class="nav-text">Align工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pin工具"><span class="nav-number">2.2.</span> <span class="nav-text">Pin工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试技巧"><span class="nav-number">3.</span> <span class="nav-text">调试技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级自动布局"><span class="nav-number">4.</span> <span class="nav-text">高级自动布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推迟的布局过程"><span class="nav-number">4.1.</span> <span class="nav-text">推迟的布局过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量改变"><span class="nav-number">4.2.</span> <span class="nav-text">批量改变</span></a></li></ol></li></ol></div>
             
 
           </div>

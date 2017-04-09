@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
+<meta name="description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的间距">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详解自动布局(Masonry)实现九宫格">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/详解自动布局（Masonry）实现九宫格/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
+<meta property="og:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的间距">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-f9e752bfc5b8ffb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e6bb6f6d5a20d779.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-8e6d4276d6da399d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -103,10 +103,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e608894c34ba15d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-b4360a56a4693dbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-4e01cb9f1c2a49e5.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-04-09T08:57:42.772Z">
+<meta property="og:updated_time" content="2017-04-09T13:19:21.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解自动布局(Masonry)实现九宫格">
-<meta name="twitter:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
+<meta name="twitter:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的间距">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-f9e752bfc5b8ffb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -354,8 +354,9 @@
       
 
       
-        <p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。<br><a id="more"></a></p>
-<p>###九宫格布局<br>使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：</p>
+        <a id="more"></a>
+<p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。</p>
+<h3 id="九宫格布局"><a href="#九宫格布局" class="headerlink" title="九宫格布局"></a>九宫格布局</h3><p>使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：</p>
 <ol>
 <li>每个单元的宽cellWidth；</li>
 <li>每个单元的高cellHeight；</li>
@@ -392,8 +393,8 @@
 <p>上面这四个判断在很多地方都可以用到，可以记下备用🙂。</p>
 <p>然后是上一行的view判断也需要注意。</p>
 <p>其实这不单单只是九宫格布局，N个单元格布局也是可以的，感兴趣的小伙胖可以自行测试（好吧，估计你从我写的方法名已经看出来了，每行个数和总个数我都没有写死😂）。</p>
-<p>###另一种九宫格<br>这里的九宫格布局是子视图固定，而父视图由子视图决定，还有另一种情况：父视图高宽固定，子视图与父视图边界距离给定，子视图间距给定。<br>知道怎么布局吗？可以先思考一下。<br>|<br>|<br>|<br>|<br>|<br>|<br>好吧，揭晓答案：只要按照第一种九宫格前5个步骤来添加约束即可，去掉最后两步。</p>
-<p>###总结<br>一开始我只是想布局一个九宫格，但是后来又想，如果需求扩展到了N个单元，该如何实现呢，我的办法是从九宫格开始，由小及大来推导，然后就是要知道自动布局需要添加哪些约束，能够完整的固定视图，不能多，也不要少，这是很重要的。</p>
+<h3 id="另一种九宫格"><a href="#另一种九宫格" class="headerlink" title="另一种九宫格"></a>另一种九宫格</h3><p>这里的九宫格布局是子视图固定，而父视图由子视图决定，还有另一种情况：父视图高宽固定，子视图与父视图边界距离给定，子视图间距给定。<br>知道怎么布局吗？可以先思考一下。<br>|<br>|<br>|<br>|<br>|<br>|<br>好吧，揭晓答案：只要按照第一种九宫格前5个步骤来添加约束即可，去掉最后两步。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一开始我只是想布局一个九宫格，但是后来又想，如果需求扩展到了N个单元，该如何实现呢，我的办法是从九宫格开始，由小及大来推导，然后就是要知道自动布局需要添加哪些约束，能够完整的固定视图，不能多，也不要少，这是很重要的。</p>
 
       
     </div>
@@ -485,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -548,6 +558,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#九宫格布局"><span class="nav-number">1.</span> <span class="nav-text">九宫格布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另一种九宫格"><span class="nav-number">2.</span> <span class="nav-text">另一种九宫格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
