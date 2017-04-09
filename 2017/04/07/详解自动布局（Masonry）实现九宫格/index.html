@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 ###九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的">
+<meta name="description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详解自动布局(Masonry)实现九宫格">
 <meta property="og:url" content="https://flowyears.github.io/2017/04/07/详解自动布局（Masonry）实现九宫格/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 ###九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的">
+<meta property="og:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-f9e752bfc5b8ffb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e6bb6f6d5a20d779.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-8e6d4276d6da399d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -103,10 +103,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e608894c34ba15d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-b4360a56a4693dbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-4e01cb9f1c2a49e5.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-04-08T15:01:16.767Z">
+<meta property="og:updated_time" content="2017-04-09T08:57:42.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解自动布局(Masonry)实现九宫格">
-<meta name="twitter:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。 ###九宫格布局使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：  每个单元的宽cellWidth； 每个单元的高cellHeight； 每行有几个单元numPerRow； 总共单元个数totalNum； 每个单元与边界间距viewPadding； 每个单元之间的">
+<meta name="twitter:description" content="以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-f9e752bfc5b8ffb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -121,7 +121,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -144,7 +144,7 @@
   <title> 详解自动布局(Masonry)实现九宫格 | 流月 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -227,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -294,9 +294,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
                 2017-04-07
               </time>
             
@@ -315,7 +315,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -354,7 +354,7 @@
       
 
       
-        <p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。</p>
+        <p>以前写TimeLine中照片九宫格布局是直接计算frame，今天想用自动布局实现。<br><a id="more"></a></p>
 <p>###九宫格布局<br>使用自动布局，首先就必须知道给出了哪些条件。一般在TimeLine中照片九宫格布局给出的已知条件为：</p>
 <ol>
 <li>每个单元的宽cellWidth；</li>
@@ -506,7 +506,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
@@ -517,7 +517,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">分类</span>
               
             </div>
           
@@ -528,7 +528,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">标签</span>
               
             </div>
           
@@ -578,11 +578,11 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
