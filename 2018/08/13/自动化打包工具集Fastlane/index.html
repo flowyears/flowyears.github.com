@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="流月" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是Fastlane Fastlane是一套使用Ruby写的自动化工具集，旨在简化Android和iOS的部署过程，自动化你的工作流。它可以简化一些乏味、单调、重复的工作，像截图、代码签名以及发布App.  如何安装Fastlane 安装xcode命令行工具1xcode-select --install   如果没有安装，会弹出对话框，点击安装; 如果已经安装,就会提示  xcode-selec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化打包工具集Fastlnae">
+<meta property="og:url" content="https://flowyears.github.io/2018/08/13/自动化打包工具集Fastlane/index.html">
+<meta property="og:site_name" content="流月">
+<meta property="og:description" content="什么是Fastlane Fastlane是一套使用Ruby写的自动化工具集，旨在简化Android和iOS的部署过程，自动化你的工作流。它可以简化一些乏味、单调、重复的工作，像截图、代码签名以及发布App.  如何安装Fastlane 安装xcode命令行工具1xcode-select --install   如果没有安装，会弹出对话框，点击安装; 如果已经安装,就会提示  xcode-selec">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/760391-0bac65ce7d694006.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/760391-7dd3dfbe86bcc3ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/760391-f42781c6443091c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-08-13T06:57:40.128Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动化打包工具集Fastlnae">
+<meta name="twitter:description" content="什么是Fastlane Fastlane是一套使用Ruby写的自动化工具集，旨在简化Android和iOS的部署过程，自动化你的工作流。它可以简化一些乏味、单调、重复的工作，像截图、代码签名以及发布App.  如何安装Fastlane 安装xcode命令行工具1xcode-select --install   如果没有安装，会弹出对话框，点击安装; 如果已经安装,就会提示  xcode-selec">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/760391-0bac65ce7d694006.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://flowyears.github.io/2018/08/13/自动化打包工具集Fastlane/"/>
+
+
+
+
+
+  <title> 自动化打包工具集Fastlnae | 流月 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">流月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2018/08/13/自动化打包工具集Fastlane/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="flowyears">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="流月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自动化打包工具集Fastlnae
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T14:54:48+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具-在此处输入这篇文章的分类。/" itemprop="url" rel="index">
+                    <span itemprop="name">工具   //在此处输入这篇文章的分类。</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是Fastlane"><a href="#什么是Fastlane" class="headerlink" title="什么是Fastlane"></a>什么是Fastlane</h2><blockquote>
+<p>Fastlane是一套使用Ruby写的自动化工具集，旨在简化Android和iOS的部署过程，自动化你的工作流。它可以简化一些乏味、单调、重复的工作，像截图、代码签名以及发布App.</p>
+</blockquote>
+<h2 id="如何安装Fastlane"><a href="#如何安装Fastlane" class="headerlink" title="如何安装Fastlane"></a>如何安装Fastlane</h2><ol>
+<li>安装xcode命令行工具<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果没有安装，会弹出对话框，点击安装;</p>
+<p>如果已经安装,就会提示</p>
+<blockquote>
+<p>xcode-select: error: command line tools are already installed, use “Software Update” to install updates。</p>
+</blockquote>
+<ol start="2">
+<li>安装Fastlane</li>
+</ol>
+<p>使用下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install fastlane -NV</span><br></pre></td></tr></table></figure></p>
+<p>或是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install fastlane</span><br></pre></td></tr></table></figure></p>
+<p>来安装Fastlane。</p>
+<p>安装完成后，可以执行下面命令，检查是否安装好。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane --version</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>初始化Fastlane</li>
+</ol>
+<p>cd到你的项目目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure></p>
+<p>过一会会出现如下提示，让你选择一个选项：<br><img src="https://upload-images.jianshu.io/upload_images/760391-0bac65ce7d694006.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我这里希望打包上传到app store，所以选择了3.</p>
+<p>如果你的工程是用cocoapods的那么可能会提示让你勾选工程的Scheme，步骤就是打开你的xcode，点击Manage Schemes，在一堆三方库中找到你的项目Scheme，在后面的多选框中进行勾选，然后rm -rf fastlane文件夹，重新fastlane init一下就不会报错了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/760391-7dd3dfbe86bcc3ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>接着会提示你输入开发者账号和密码。</p>
+<blockquote>
+<p>[20:48:55]: Please enter your Apple ID developer credentials<br>[20:48:55]: Apple ID Username:</p>
+</blockquote>
+<p>登录成功后会提示你是否需要下载你的App的metadata。点y等待就可以。</p>
+<p>初始化成功以后，就会生成一个如下图所示的fastlane文件夹：<br><img src="https://upload-images.jianshu.io/upload_images/760391-f42781c6443091c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fastlane"></p>
+<p>其中<code>metadata</code>和<code>screenshots</code>分别对应App元数据和商店应用截图。</p>
+<h4 id="Appfile"><a href="#Appfile" class="headerlink" title="Appfile"></a>Appfile</h4><p>Appfile用来存放app_identifier，apple_id和team_id。 它的格式是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app_identifier &quot;com.xxx.xxx&quot; # app的bundle identifier</span><br><span class="line">apple_id &quot;xxx@xxx.com&quot; # 你的Apple ID</span><br><span class="line"> </span><br><span class="line">team_id &quot;XXXXXXXXXX&quot; # Team ID</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
+<p>你也可以为每个lane(后面会讲到)提供不同的 app_identifier, apple_id 和 team_id，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app_identifier &quot;com.aaa.aaa&quot;</span><br><span class="line">apple_id &quot;aaa@aaa.com&quot;</span><br><span class="line">team_id &quot;AAAAAAAAAA&quot;</span><br><span class="line"> </span><br><span class="line">for_lane : release do</span><br><span class="line">  app_identifier &quot;com.bbb.bbb&quot;</span><br><span class="line">  apple_id &quot;bbb@bbb.com&quot;</span><br><span class="line">  team_id &quot;AAAAAAAAAA&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>这里就是为Fastfile中定义的: release设置单独的信息。</p>
+<h4 id="Deliverfile"><a href="#Deliverfile" class="headerlink" title="Deliverfile"></a>Deliverfile</h4><p><code>Deliverfile</code>中为发布的配置信息，一般情况用不到。</p>
+<h4 id="Fastfile"><a href="#Fastfile" class="headerlink" title="Fastfile"></a>Fastfile</h4><p><code>Fastfile</code>是我们最应该关注的文件，也是我们的工作文件。<br>下面是我的fastfile文件中上传至app store的lane：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">platform :ios do</span><br><span class="line">#------------------------------APP STORE-----------------------------------</span><br><span class="line">desc &quot;Push a new release build to the App Store&quot;</span><br><span class="line">lane :to_appStore do</span><br><span class="line">#gym用来编译ipa</span><br><span class="line">gym(clean:true,# 编译前执行 clean，可减少 ipa 文件大小 </span><br><span class="line">scheme: &quot;MobileChecking&quot;,#要编译的scheme名称</span><br><span class="line">export_method: &quot;app-store&quot;, # Xcode 9增加export_method标签</span><br><span class="line">silent: true, # 隐藏没有必要的信息</span><br><span class="line">output_directory: &quot;./fastlane/appstoreIPA&quot;, # ipa输出目录</span><br><span class="line">output_name:&quot;mobileChecking&quot;, #输出的ipa名称</span><br><span class="line">archive_path:&quot;./fastlane/appstoreIpaArchive&quot;, #archive文件导出地址 </span><br><span class="line">export_xcargs: &quot;-allowProvisioningUpdates&quot;</span><br><span class="line">) </span><br><span class="line">upload_to_app_store</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>其中一个lane就是一个任务，里面是一个个的action组成的工作流。</p>
+<p>export_method：指定打包所使用的输出方式,目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id,即xcodebuild的。</p>
+<h2 id="如何使用Fastlane"><a href="#如何使用Fastlane" class="headerlink" title="如何使用Fastlane"></a>如何使用Fastlane</h2><p>  定义完lane之后怎么执行呢？打开终端，切换到项目的根目录：执行fastlane [lane’name]就可以了。比如我的lane名称叫appStore，那么久执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane  appStore</span><br></pre></td></tr></table></figure></p>
+<p>或者采用下面的命令会更快：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle exec fastlane  appStore</span><br></pre></td></tr></table></figure>
+<p>成功之后会在相应的路径下生成ipa文件,并会自动上传至app store。</p>
+<h2 id="如何配置Fastfile"><a href="#如何配置Fastfile" class="headerlink" title="如何配置Fastfile"></a>如何配置Fastfile</h2><h2 id="上传到fir"><a href="#上传到fir" class="headerlink" title="上传到fir"></a>上传到fir</h2><p>####安装fir<br>使用如下命令，安装fir：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install fir-cli</span><br></pre></td></tr></table></figure></p>
+<p>安装完成以后，登录fir：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fir login</span><br></pre></td></tr></table></figure></p>
+<p>会让你输入你的<code>fir.im API Token</code>,去fir网站即可获得此token。<br>安装fir：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane add_plugin firim</span><br></pre></td></tr></table></figure></p>
+<p>fir上传的lane：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#-----------------------------------FIR-------------------------------</span><br><span class="line"></span><br><span class="line">desc &quot;Push a new release build to the FIR&quot;</span><br><span class="line">lane :to_fir do</span><br><span class="line">#build_app(workspace: &quot;MobileChecking.xcworkspace&quot;, scheme: &quot;MobileChecking&quot;)</span><br><span class="line">#gym用来编译ipa</span><br><span class="line">gym(clean: true,  # 编译前执行 clean，可减少 ipa 文件大小 </span><br><span class="line">scheme: &quot;MobileChecking&quot;, # 要编译的scheme名称</span><br><span class="line">export_method: &quot;ad-hoc&quot;, # Xcode 9增加export_method标签</span><br><span class="line">silent: true, # 隐藏没有必要的信息</span><br><span class="line">output_directory: &quot;./fastlane/firIPA&quot;, # ipa输出目录</span><br><span class="line">output_name:&quot;mobileChecking&quot;, # 输出的ipa名称</span><br><span class="line">archive_path:&quot;./fastlane/firIpaArchive&quot;, #archive文件导出地址 </span><br><span class="line">export_xcargs: &quot;-allowProvisioningUpdates&quot;, </span><br><span class="line">) </span><br><span class="line"># 上传ipa到fir.im服务器，在fir.im获取firim_api_token</span><br><span class="line">firim(firim_api_token: &quot;451d867c8860da31e5e46062b1ecea57&quot;)</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>如果你想上传到蒲公英，可以参考这篇文章：<a href="https://www.jianshu.com/p/6ef62c0415dc" target="_blank" rel="noopener">使用 fastlane 实现 iOS 持续集成（二）</a>。</p>
+<h2 id="常见错误处理"><a href="#常见错误处理" class="headerlink" title="常见错误处理"></a>常见错误处理</h2><ol>
+<li>FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[14:57:59]: fastlane finished with errors</span><br><span class="line"></span><br><span class="line">[!] xcodebuild -showBuildSettings timed out after 4 retries with a </span><br><span class="line">base timeout of 3. You can override the base timeout value with the </span><br><span class="line">environment variable FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT, and the </span><br><span class="line">number of retries with the environment variable </span><br><span class="line">FASTLANE_XCODEBUILD_SETTINGS_RETRIES</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在遇到这个错误之后，在命令窗口运行下面代码来更新timeout时间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#更新timeout</span><br><span class="line">export FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT=120</span><br></pre></td></tr></table></figure></p>
+<p>参考</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/5d836e89d9d1" target="_blank" rel="noopener">iOS效率神器fastlane自动打包</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/23180455" target="_blank" rel="noopener">小团队的自动化发布－Fastlane带来的全自动化部署</a></li>
+<li><a href="http://www.cocoachina.com/ios/20170519/19317.html" target="_blank" rel="noopener">iOS中使用Fastlane实现自动化打包和发布</a></li>
+<li><a href="https://www.aliyun.com/jiaocheng/349851.html?spm=5176.100033.2.9.fBE7Ux" target="_blank" rel="noopener">当Fastlane遇到Xcode9打包出来不一定是ipa而是坑</a></li>
+<li><a href="https://blog.csdn.net/yyh3663477/article/details/60468621" target="_blank" rel="noopener">Fastlane的gym指令</a></li>
+<li><a href="https://www.jianshu.com/p/840943eff17b" target="_blank" rel="noopener">使用Fastlane实现iOS项目自动打包</a></li>
+<li><a href="https://blog.csdn.net/cdut100/article/details/76381605" target="_blank" rel="noopener">(译)iOS自动化打包发布(fastlane)</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/22/响应链之Hit-Testing/" rel="next" title="响应链之Hit-Testing">
+                <i class="fa fa-chevron-left"></i> 响应链之Hit-Testing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/images/avatar.jpg"
+               alt="flowyears" />
+          <p class="site-author-name" itemprop="name">flowyears</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Fastlane"><span class="nav-number">1.</span> <span class="nav-text">什么是Fastlane</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何安装Fastlane"><span class="nav-number">2.</span> <span class="nav-text">如何安装Fastlane</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Appfile"><span class="nav-number">2.0.1.</span> <span class="nav-text">Appfile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deliverfile"><span class="nav-number">2.0.2.</span> <span class="nav-text">Deliverfile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fastfile"><span class="nav-number">2.0.3.</span> <span class="nav-text">Fastfile</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用Fastlane"><span class="nav-number">3.</span> <span class="nav-text">如何使用Fastlane</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何配置Fastfile"><span class="nav-number">4.</span> <span class="nav-text">如何配置Fastfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传到fir"><span class="nav-number">5.</span> <span class="nav-text">上传到fir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见错误处理"><span class="nav-number">6.</span> <span class="nav-text">常见错误处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">flowyears</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
