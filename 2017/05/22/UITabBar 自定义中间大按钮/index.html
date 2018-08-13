@@ -1,0 +1,728 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="流月" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在项目中经常会有这种需求：在tabBar的正中间放置一个大按钮，有时候会超出tabBar的可点击范围。如下图的闲鱼：  主要思路就是：  自定义UITabBarController 自定义UITabBar 在自定义的UITabBarController中用自定义的UITabBar替换掉原有的tabbar。  首先，利用KVC在自定义的UITabBarController中用自定义的UITabBar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITabBar 自定义中间大按钮">
+<meta property="og:url" content="https://flowyears.github.io/2017/05/22/UITabBar 自定义中间大按钮/index.html">
+<meta property="og:site_name" content="流月">
+<meta property="og:description" content="在项目中经常会有这种需求：在tabBar的正中间放置一个大按钮，有时候会超出tabBar的可点击范围。如下图的闲鱼：  主要思路就是：  自定义UITabBarController 自定义UITabBar 在自定义的UITabBarController中用自定义的UITabBar替换掉原有的tabbar。  首先，利用KVC在自定义的UITabBarController中用自定义的UITabBar">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-c8711365e3606a12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-22T13:02:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITabBar 自定义中间大按钮">
+<meta name="twitter:description" content="在项目中经常会有这种需求：在tabBar的正中间放置一个大按钮，有时候会超出tabBar的可点击范围。如下图的闲鱼：  主要思路就是：  自定义UITabBarController 自定义UITabBar 在自定义的UITabBarController中用自定义的UITabBar替换掉原有的tabbar。  首先，利用KVC在自定义的UITabBarController中用自定义的UITabBar">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-c8711365e3606a12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://flowyears.github.io/2017/05/22/UITabBar 自定义中间大按钮/"/>
+
+
+
+
+
+  <title> UITabBar 自定义中间大按钮 | 流月 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">流月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/05/22/UITabBar 自定义中间大按钮/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="flowyears">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="流月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UITabBar 自定义中间大按钮
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-22T21:02:20+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/UI-在此处输入这篇文章的分类。/" itemprop="url" rel="index">
+                    <span itemprop="name">UI   //在此处输入这篇文章的分类。</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在项目中经常会有这种需求：在tabBar的正中间放置一个大按钮，有时候会超出tabBar的可点击范围。如下图的闲鱼：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-c8711365e3606a12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="闲鱼TabBar"></p>
+<p>主要思路就是：</p>
+<ul>
+<li>自定义UITabBarController</li>
+<li>自定义UITabBar</li>
+<li>在自定义的UITabBarController中用自定义的UITabBar替换掉原有的tabbar。</li>
+</ul>
+<p>首先，利用KVC在自定义的UITabBarController中用自定义的UITabBar替换掉原有的tabbar：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CustomTabBar *myTabBar = [[CustomTabBar alloc] init];</span><br><span class="line">[self setValue:myTabBar forKey:@&quot;tabBar&quot;];</span><br></pre></td></tr></table></figure>
+<p>大按钮好解决，用一张大点的图片即可。但是你会发现点击超出tabbar顶部的部分是不能响应的。如果你知道hit-test的工作原理，就会知道为什么超出部分不能响应。响应的四个条件是：</p>
+<ul>
+<li>视图不是隐藏的: self.hidden == NO</li>
+<li>视图是允许交互的: self.userInteractionEnabled == YES</li>
+<li>视图透明度大于0.01: self.alpha &gt; 0.01</li>
+<li>视图包含这个点: pointInside:withEvent: == YES<br>在这里就是由于不满足第四个条件，即点击的point没有落在父视图的bounce之内，所以无法响应。</li>
+</ul>
+<p>系统的hit-test方法实现大概如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01)</span><br><span class="line">    &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if ([self pointInside:point withEvent:event])</span><br><span class="line">    &#123;</span><br><span class="line">        for (UIView *subview in [self.subviews reverseObjectEnumerator])</span><br><span class="line">        &#123;</span><br><span class="line">            CGPoint convertedPoint = [subview convertPoint:point fromView:self];</span><br><span class="line">            UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</span><br><span class="line">            if (hitTestView)</span><br><span class="line">            &#123;</span><br><span class="line">                return hitTestView;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通常解决这个问题的做法是将响应区域扩大，这个我还没有研究。</p>
+<p>不过我的思路特殊一点：在自定义的UITabBar中重写hit-test方法，将点击的point进行修改，让它落在可点击范围之内。</p>
+<p>由于是点击的point的y坐标超出了tabbar范围，那么只要修改这个y坐标，让他落在tabbar的可点击范围内即可。</p>
+<p>修改y坐标的代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01)</span><br><span class="line">    &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if ([self pointInside:point withEvent:event])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self mmHitTest:point withEvent:event];</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        CGPoint otherPoint = CGPointMake(point.x, point.y + self.effectAreaY);</span><br><span class="line">        return [self mmHitTest:otherPoint withEvent:event];</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIView *)mmHitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    for (UIView *subview in [self.subviews reverseObjectEnumerator])</span><br><span class="line">    &#123;</span><br><span class="line">        CGPoint convertedPoint = [subview convertPoint:point fromView:self];</span><br><span class="line">        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</span><br><span class="line">        if (hitTestView) &#123;</span><br><span class="line">            return hitTestView;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中effectAreaY是超出tabbar的垂直距离，比如大按钮顶部超出20，那么这个值就是20，你可以根据需求进行调整。</p>
+<p>到这里，超出tabbar区域的大按钮点击问题就得到解决了，但是我反复点了一下，发现一个小问题，就是每个tabbar的item超出部分都能点击，这是我们不想要的。</p>
+<p>我们想要的是落点在中间按钮范围内时才去修改这个落点，所以，加一个判断即可，只要点击的point的x坐标在中间大按钮范围之内就去修改，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01)</span><br><span class="line">    &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ([self pointInside:point withEvent:event])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self mmHitTest:point withEvent:event];</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        CGFloat tabBarItemWidth = self.bounds.size.width/self.items.count;</span><br><span class="line">        CGFloat left = self.center.x - tabBarItemWidth/2;</span><br><span class="line">        CGFloat right = self.center.x + tabBarItemWidth/2;</span><br><span class="line">        </span><br><span class="line">        if (point.x &lt; right &amp;&amp;</span><br><span class="line">            point.x &gt; left)</span><br><span class="line">        &#123;//当点击的point的x坐标是中间item范围内，才去修正落点</span><br><span class="line">            CGPoint otherPoint = CGPointMake(point.x, point.y + self.effectAreaY);</span><br><span class="line">            return [self mmHitTest:otherPoint withEvent:event];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIView *)mmHitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    for (UIView *subview in [self.subviews reverseObjectEnumerator])</span><br><span class="line">    &#123;</span><br><span class="line">        CGPoint convertedPoint = [subview convertPoint:point fromView:self];</span><br><span class="line">        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</span><br><span class="line">        if (hitTestView) &#123;</span><br><span class="line">            return hitTestView;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，如果想调整图片和文字位置，调整tabbarItem的属性：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[vc.tabBarItem setImageInsets:UIEdgeInsetsMake(-30, 0, 30, 0)];//修改图片偏移量，上下，左右必须为相反数，否则图片会被压缩</span><br><span class="line">[vc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -30)];//修改文字偏移量</span><br></pre></td></tr></table></figure></p>
+<p>vc是每个根控制器。</p>
+<p>到这里，就完美的解决了自定义大按钮及其点击问题，相当简单。</p>
+<p>总的来说要点就是：</p>
+<ul>
+<li>替换系统的UITabBar</li>
+<li>修改点击point的落点</li>
+<li>判断什么时候才去修改落点。</li>
+</ul>
+<p>最后附上Demo：<a href="https://github.com/flowyears/HitTesting" target="_blank" rel="noopener">HitTesting</a></p>
+<p>end~ 如果觉得有用，请点个赞👍，谢谢~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/09/iOS常用开源库/" rel="next" title="iOS常用开源库">
+                <i class="fa fa-chevron-left"></i> iOS常用开源库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/22/响应链之Hit-Testing/" rel="prev" title="响应链之Hit-Testing">
+                响应链之Hit-Testing <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/images/avatar.jpg"
+               alt="flowyears" />
+          <p class="site-author-name" itemprop="name">flowyears</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">flowyears</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

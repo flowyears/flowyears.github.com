@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="流月" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Auto-Layout-Guide》笔记">
+<meta property="og:url" content="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/index.html">
+<meta property="og:site_name" content="流月">
+<meta property="og:description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-3843819524c2a48a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-e2ef14402782078f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-2cde8b491ccabb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-2a0c61da751892b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-3c95091daf09a074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-753104f642a87016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/760391-7c68e65d852366cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-04-09T13:21:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Auto-Layout-Guide》笔记">
+<meta name="twitter:description" content="概念约束优先级所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/760391-3843819524c2a48a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/"/>
+
+
+
+
+
+  <title> 《Auto-Layout-Guide》笔记 | 流月 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">流月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://flowyears.github.io/2017/04/07/《Auto-Layout-Guide》笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="flowyears">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="流月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《Auto-Layout-Guide》笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:55:29+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动布局/" itemprop="url" rel="index">
+                    <span itemprop="name">自动布局</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="约束优先级"><a href="#约束优先级" class="headerlink" title="约束优先级"></a>约束优先级</h4><p>所有约束都有1-1000的优先级。优先级为1000的约束是必须的。其它约束都是可选的。</p>
+<a id="more"></a>
+<blockquote>
+<p>注意：不要强迫使用所有1000个优先级值。实际上，优先级通常聚集在系统定义的低（250），中（500），高（750）和必须（1000）周围。可能需要让约束的优先级比这些值高或低1-2点，来帮助阻止绑定（teis）。如果优先级远远超出这些值，可能需要重新检查布局逻辑。</p>
+</blockquote>
+<h4 id="固有内容尺寸-Intrinsic-Content-Size"><a href="#固有内容尺寸-Intrinsic-Content-Size" class="headerlink" title="固有内容尺寸(Intrinsic Content Size)"></a>固有内容尺寸(Intrinsic Content Size)</h4><p>有些视图根据当前给定的内容有个自然的尺寸。这个尺寸被称为<code>固有内容尺寸(Intrinsic Content Size)</code>。</p>
+<p>不是所有视图都有固有内容尺寸。对于有固有内容尺寸的视图，<strong>它可以定义视图的高度，宽度或者两者都定义</strong>。下面的表格列出了一些例子（这里只标注iOS的，mac OS已删除）。</p>
+<table>
+<thead>
+<tr>
+<th>视图</th>
+<th>固有内容尺寸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UIView</td>
+<td>没有固有内容尺寸</td>
+</tr>
+<tr>
+<td>UISlider</td>
+<td>只定义了宽度。</td>
+</tr>
+<tr>
+<td>UILabel,UIbutton,UISwitch,UITextField</td>
+<td>同时定义了宽度和高度。</td>
+</tr>
+<tr>
+<td>UITextView,UIImageView</td>
+<td>固有内容尺寸可以改变。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Content-hugging-amp-Compression-resistance"><a href="#Content-hugging-amp-Compression-resistance" class="headerlink" title="Content hugging &amp; Compression resistance"></a>Content hugging &amp; Compression resistance</h4><p>自动布局使用了一对约束来呈现一个视图的每个维度。content hugging向内抱紧视图，使紧贴内容（简称抱紧我）。压缩阻力（compression resistance）向外推视图，使其不剪辑内容（简称别挤我）。</p>
+<p>Content hugging优先级越高，抱的越紧；compression resistance优先级越高，压缩阻力越大，内容越不容易被剪辑。</p>
+<p>下面举两个例子说明一下：</p>
+<ul>
+<li>例1（Content hugging）<br>通常会有这样一个功能，左侧label，提示输入名字，右侧是一个textfield，用于输入名字，如下图所示：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-3843819524c2a48a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>这时候我们希望name足够小，能显示name足以，textfield则尽量拉伸。<br>这时候只需要name的Content hugging属性优先级大于textfield就可以了。</p>
+<ul>
+<li>例2（compression resistance）<br>给一个label添加宽度为80的约束，如果label的文字超过80，那么显示就会这样：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-e2ef14402782078f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>因为compression resistance默认优先级为750，而高宽这些数据的优先级默认是required（即1000）。所以我们只要将宽度的约束优先级修改一下，比750小即可，比如749.这样修改后，效果如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-2cde8b491ccabb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样应该就能很好理解两个属性的意义了。</p>
+<p>常见关系优先级：</p>
+<table>
+<thead>
+<tr>
+<th>属性或关系</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>equal</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>greater-than-or-equal</td>
+<td>1000</td>
+</tr>
+<tr>
+<td> less-than-or-equal</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Content hugging</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Compression resistance</td>
+<td>750</td>
+</tr>
+</tbody>
+</table>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><h4 id="Align工具"><a href="#Align工具" class="headerlink" title="Align工具"></a>Align工具</h4><p>Align工具可以快速对齐布局中的项。选择想要<strong>对齐</strong>的项，然后单击Align工具。界面生成器显示一个弹出框视图，其中包括一些可能的对齐选项。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-2a0c61da751892b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="Pin工具"><a href="#Pin工具" class="headerlink" title="Pin工具"></a>Pin工具</h4><p>Pin工具可以快速定义视图相对于它<strong>邻居</strong>的位置，或者快速定义视图的尺寸。选择想要固定(pin)位置或尺寸的项，然后点击Pin工具。界面生成器显示一个弹出框视图，其中包括一些选项。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-3c95091daf09a074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>弹出框顶部区域可以固定选中项的开头，顶部，结尾或底部边缘到它最近的邻居。关联的数字表示画布中两个项之间的当前间隔。可以输入自定义的间隔，或者点击三角形，设置它被约束到哪个视图，或者选择标准间隔。Constrain to margins复选框决定约束使用父视图的页边留白（margin）还是它的边缘（edge）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-753104f642a87016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Resolve Auto Layout Issues工具<br>Resolve Auto Layout Issues工具提供了一些选项用来修复常见的自动布局问题。菜单的上半部分只影响当前选中的视图。下半部分选项影响场景中所有视图。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/760391-7c68e65d852366cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>可以使用这个工具更新视图的框架（frame），基于当前的约束，或者根据视图在画布中的当前位置更新约束。还可以添加缺失的约束，清理约束，或者重置视图为界面生成器推荐的约束。</p>
+<h3 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h3><p>在自动布局过程中，出现错误是经常的事情，自动布局中的错误主要分为三个类型：</p>
+<ul>
+<li><strong>不可满足的（unsatisfiable）布局。</strong>布局没有有效的解。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1" target="_blank" rel="noopener">不可满足的布局</a>。</li>
+<li><strong>有歧义的布局。</strong>你的布局有两个或多个可能的解。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/AmbiguousLayouts.html#//apple_ref/doc/uid/TP40010853-CH18-SW1" target="_blank" rel="noopener">有歧义的布局</a>。</li>
+<li><strong>逻辑错误。</strong>布局逻辑中存在bug。更多信息请参考<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/LogicalErrors.html#//apple_ref/doc/uid/TP40010853-CH20-SW1" target="_blank" rel="noopener">逻辑错误</a>。</li>
+</ul>
+<p>调试方法：<br>查看控制台的打印信息，有时候打印的信息比较多，不方便看，添加标识符，是一个很好的方法。</p>
+<h3 id="高级自动布局"><a href="#高级自动布局" class="headerlink" title="高级自动布局"></a>高级自动布局</h3><h4 id="推迟的布局过程"><a href="#推迟的布局过程" class="headerlink" title="推迟的布局过程"></a>推迟的布局过程</h4><p>自动布局安排一个布局过程在不久的将来取代直接更新受影响的view的frame。该推迟的过程更新布局的约束，然后计算视图层次结构中所有视图的frame。</p>
+<p>可以通过调用<a href="https://developer.apple.com/reference/uikit/uiview/1622601-setneedslayout" target="_blank" rel="noopener">setNeedsLayout</a>方法或者<a href="https://developer.apple.com/reference/uikit/uiview/1622450-setneedsupdateconstraints" target="_blank" rel="noopener">setNeedsUpdateConstraints</a>方法，调度自己的推迟的布局过程。</p>
+<p>推迟的布局过程实际涉及视图层级结构的两个过程：<br>1.更新过程根据需要更新约束。<br>2.布局过程根据需要重新定位视图的frame。</p>
+<ol>
+<li><p>更新过程<br>系统遍历视图层级结构，并在所有视图控制器上调用<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621379-updateviewconstraints" target="_blank" rel="noopener">updateViewConstraints</a>方法，在所有视图上调用<a href="https://developer.apple.com/reference/uikit/uiview/1622512-updateconstraints" target="_blank" rel="noopener">updateConstraints</a>方法。你可以覆写这些方法，来优化约束的改变（查看<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ModifyingConstraints.html#//apple_ref/doc/uid/TP40010853-CH29-SW2" target="_blank" rel="noopener">批量改变</a>）。</p>
+</li>
+<li><p>布局过程<br>系统再次遍历视图层级结构，并在所有视图控制器上调用<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621437-viewwilllayoutsubviews" target="_blank" rel="noopener">viewWillLayoutSubviews</a>方法，在所有视图上调用<a href="https://developer.apple.com/reference/uikit/uiview/1622482-layoutsubviews" target="_blank" rel="noopener">layoutSubviews</a>。默认情况下，layoutSubviews方法使用自动布局引擎计算的矩形更新每个子视图的frame。你可以覆写这些方法来修改布局（查看<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ModifyingConstraints.html#//apple_ref/doc/uid/TP40010853-CH29-SW4" target="_blank" rel="noopener">自定义布局</a>）。</p>
+</li>
+</ol>
+<h4 id="批量改变"><a href="#批量改变" class="headerlink" title="批量改变"></a>批量改变</h4><p>影响变化发生后，立即更新约束几乎总是更干净和容易。推迟这些改变到一个之后的方法会让代码复杂，更难理解。</p>
+<p>然而，有些时候你可能基于性能原因，希望批量修改。只有在就地改变约束太慢，或者当视图做了很多多余的改变时，才应该这么做。</p>
+<p>要想批量改变，在持有约束的视图上调用<a href="https://developer.apple.com/reference/uikit/uiview/1622450-setneedsupdateconstraints" target="_blank" rel="noopener">setNeedsUpdateConstraints</a>方法，而不是直接做出改变。然后，覆写视图的<a href="https://developer.apple.com/reference/uikit/uiview/1622512-updateconstraints" target="_blank" rel="noopener">updateConstraints</a>方法，来修改受影响的约束。</p>
+<blockquote>
+<p><strong>提示</strong>:你的updateConstraints实现必须尽可能高效。不要禁用所有约束，然后启用你需要的。相反，你的应用程序必须有些方式来追踪你的约束，并在每个更新过程中验证它们。只有变化的项需要改变。在每一个更新过程中，你必须确保应用程序的当前状态有合适的约束。</p>
+</blockquote>
+<p><strong>总是在你实现的updateConstraints方法的最后一步调用父类的实现</strong>。</p>
+<p>不要在你的updateConstraints方法中调用setNeedsUpdateConstraints。调用setNeedsUpdateConstraints调度另一个更新过程，创建了一个反馈回路（feedback loop）。</p>
+<p>参考：<br><a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ModifyingConstraints.html#//apple_ref/doc/uid/TP40010853-CH29-SW1" target="_blank" rel="noopener">Auto Layout Guide</a><br><a href="http://www.jianshu.com/p/5d5562106756" target="_blank" rel="noopener">自动布局指南</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/07/详解自动布局（Masonry）实现九宫格/" rel="next" title="详解自动布局(Masonry)实现九宫格">
+                <i class="fa fa-chevron-left"></i> 详解自动布局(Masonry)实现九宫格
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/07/[译]UITableView-Auto-Layout-(iOS-8+)/" rel="prev" title="UITableView-Auto-Layout-(iOS 8+)">
+                UITableView-Auto-Layout-(iOS 8+) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/images/avatar.jpg"
+               alt="flowyears" />
+          <p class="site-author-name" itemprop="name">flowyears</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#约束优先级"><span class="nav-number">1.1.</span> <span class="nav-text">约束优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固有内容尺寸-Intrinsic-Content-Size"><span class="nav-number">1.2.</span> <span class="nav-text">固有内容尺寸(Intrinsic Content Size)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-hugging-amp-Compression-resistance"><span class="nav-number">1.3.</span> <span class="nav-text">Content hugging &amp; Compression resistance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Align工具"><span class="nav-number">2.1.</span> <span class="nav-text">Align工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pin工具"><span class="nav-number">2.2.</span> <span class="nav-text">Pin工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试技巧"><span class="nav-number">3.</span> <span class="nav-text">调试技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级自动布局"><span class="nav-number">4.</span> <span class="nav-text">高级自动布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推迟的布局过程"><span class="nav-number">4.1.</span> <span class="nav-text">推迟的布局过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量改变"><span class="nav-number">4.2.</span> <span class="nav-text">批量改变</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">flowyears</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
