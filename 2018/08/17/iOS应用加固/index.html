@@ -89,19 +89,19 @@
 
 
 
-<meta name="description" content="##完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info">
+<meta name="description" content="完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info =">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS应用加固">
 <meta property="og:url" content="https://flowyears.github.io/2018/08/17/iOS应用加固/index.html">
 <meta property="og:site_name" content="流月">
-<meta property="og:description" content="##完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info">
+<meta property="og:description" content="完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info =">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pbznfv7sq.bkt.clouddn.com/8DD95EE6-2236-4BBF-886B-982214D0DBFB.png">
-<meta property="og:updated_time" content="2018-08-18T03:53:50.341Z">
+<meta property="og:updated_time" content="2018-08-18T04:03:49.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS应用加固">
-<meta name="twitter:description" content="##完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info">
+<meta name="twitter:description" content="完整性校验通过检测SignerIdentity判断是Mach-O文件否被篡改 原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。1234567NSBundle *bundle = [NSBundle mainBundle];NSDictionary *info =">
 <meta name="twitter:image" content="http://pbznfv7sq.bkt.clouddn.com/8DD95EE6-2236-4BBF-886B-982214D0DBFB.png">
 
 
@@ -327,14 +327,14 @@
       
 
       
-        <p>##完整性校验<br>通过检测SignerIdentity判断是Mach-O文件否被篡改</p>
+        <h2 id="完整性校验"><a href="#完整性校验" class="headerlink" title="完整性校验"></a>完整性校验</h2><p>通过检测SignerIdentity判断是Mach-O文件否被篡改</p>
 <p>原理是：SignerIdentity的值在info.plist中是不存在的，开发者不会加上去，苹果也不会，只是当ipa包被反编译后篡改文件再次打包，需要伪造SignerIdentity。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSBundle *bundle = [NSBundle mainBundle];</span><br><span class="line">NSDictionary *info = [bundle infoDictionary];</span><br><span class="line">if ([info objectForKey:@&quot;SignerIdentity&quot;] != nil)</span><br><span class="line">&#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">return NO;</span><br></pre></td></tr></table></figure></p>
 <p>参考：<a href="https://www.jianshu.com/p/91aa49c45677" target="_blank" rel="noopener">https://www.jianshu.com/p/91aa49c45677</a></p>
-<p>##越狱检测<br>参照念茜大神的方法：<a href="https://blog.csdn.net/yiyaaixuexi/article/details/20286929" target="_blank" rel="noopener">iOS安全攻防（二十）：越狱检测的攻与防</a>,很详细的讲述了检测的办法，不过经过测试，发现有的方法在未越狱的设备上也会检测成越狱，可以在使用的时候过滤掉这些方法。</p>
-<p>##双击<strong>home</strong>键后<strong>app</strong>缩略视图模糊处理<br>有时候双击home键，app展示启动app记录，会有可能暴露敏感信息，可以在app退至后台时做一个模糊处理，然后进入前台后移除模糊效果。<br>实现如下：</p>
+<h2 id="越狱检测"><a href="#越狱检测" class="headerlink" title="越狱检测"></a>越狱检测</h2><p>参照念茜大神的方法：<a href="https://blog.csdn.net/yiyaaixuexi/article/details/20286929" target="_blank" rel="noopener">iOS安全攻防（二十）：越狱检测的攻与防</a>,很详细的讲述了检测的办法，不过经过测试，发现有的方法在未越狱的设备上也会检测成越狱，可以在使用的时候过滤掉这些方法。</p>
+<h2 id="双击home键后app缩略视图模糊处理"><a href="#双击home键后app缩略视图模糊处理" class="headerlink" title="双击home键后app缩略视图模糊处理"></a>双击<strong>home</strong>键后<strong>app</strong>缩略视图模糊处理</h2><p>有时候双击home键，app展示启动app记录，会有可能暴露敏感信息，可以在app退至后台时做一个模糊处理，然后进入前台后移除模糊效果。<br>实现如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@interface AppDelegate ()</span><br><span class="line">@property(nonatomic,strong)UIVisualEffectView *effectView;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation AppDelegate</span><br><span class="line"></span><br><span class="line">- (void)applicationDidEnterBackground:(UIApplication *)application</span><br><span class="line">&#123;</span><br><span class="line">    [self.window addSubview:self.effectView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)applicationWillEnterForeground:(UIApplication *)application</span><br><span class="line">&#123;</span><br><span class="line">    [self.effectView removeFromSuperview];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(UIVisualEffectView *)effectView</span><br><span class="line">&#123;</span><br><span class="line">    if (!_effectView)</span><br><span class="line">    &#123;</span><br><span class="line">        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];</span><br><span class="line">        _effectView = [[UIVisualEffectView alloc] initWithEffect:effect];</span><br><span class="line">        _effectView.frame = self.window.bounds;</span><br><span class="line">    &#125;</span><br><span class="line">    return _effectView;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>##方法名混淆<br>也是参照念茜大神的方法：<a href="https://blog.csdn.net/yiyaaixuexi/article/details/29201699" target="_blank" rel="noopener">iOS安全攻防（二十三）：Objective-C代码混淆</a>.</p>
-<p>##明文字符串混淆<br>参考这篇文章：<a href="https://www.jianshu.com/p/49e98b8a05fd" target="_blank" rel="noopener">iOS字符串硬编码混淆</a>.</p>
+<h2 id="方法名混淆"><a href="#方法名混淆" class="headerlink" title="方法名混淆"></a>方法名混淆</h2><p>也是参照念茜大神的方法：<a href="https://blog.csdn.net/yiyaaixuexi/article/details/29201699" target="_blank" rel="noopener">iOS安全攻防（二十三）：Objective-C代码混淆</a>.</p>
+<h2 id="明文字符串混淆"><a href="#明文字符串混淆" class="headerlink" title="明文字符串混淆"></a>明文字符串混淆</h2><p>参考这篇文章：<a href="https://www.jianshu.com/p/49e98b8a05fd" target="_blank" rel="noopener">iOS字符串硬编码混淆</a>.</p>
 <p>可能作者的步骤描述的不是很清楚，我在这里简单描述一下：<br>1.在项目的<code>.pch</code>文件中，添加如下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;GolobalCFile.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//字符串混淆加密 和 解密的宏开关</span><br><span class="line">//#define ggh_confusion</span><br><span class="line">#ifdef ggh_confusion</span><br><span class="line">#define confusion_NSSTRING(string) [NSString stringWithUTF8String:decryptConstString(string)]</span><br><span class="line">#define confusion_CSTRING(string) decryptConstString(string)</span><br><span class="line">#else</span><br><span class="line">#define confusion_NSSTRING(string) @string</span><br><span class="line">#define confusion_CSTRING(string) string</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
 <p>其中decryptConstString定义在c文件GolobalCFile中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *  字符串混淆解密函数，将char[] 形式字符数组和 aa异或运算揭秘</span><br><span class="line"> *  如果没有经过混淆，请关闭宏开关</span><br><span class="line"> */</span><br><span class="line">extern char* decryptConstString(char* string)</span><br><span class="line">&#123;</span><br><span class="line">    char* origin_string = string;</span><br><span class="line">    while(*string) &#123;</span><br><span class="line">        *string ^= 0xAA;</span><br><span class="line">        string++;</span><br><span class="line">    &#125;</span><br><span class="line">    return origin_string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -345,13 +345,12 @@
 <p>即可解码明文。</p>
 <p>为了不那么麻烦，可以打包前将工程拷贝一份，这样就可以只需要编码，不用解码。</p>
 <p>以上脚本和代码均在文末Demo中。</p>
-<p>##反编译</p>
-<p><img src="http://pbznfv7sq.bkt.clouddn.com/8DD95EE6-2236-4BBF-886B-982214D0DBFB.png" alt="8DD95EE6-2236-4BBF-886B-982214D0DBFB"></p>
+<h2 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h2><p><img src="http://pbznfv7sq.bkt.clouddn.com/8DD95EE6-2236-4BBF-886B-982214D0DBFB.png" alt="8DD95EE6-2236-4BBF-886B-982214D0DBFB"></p>
 <p>在混淆了函数名以后，当然要检验一下成果了，这里就需要反编译我们的app了，有个很方便的工具<code>Class-dump</code>,这里有篇文章详细的描述了安装和使用方法：<a href="https://cnbin.github.io/blog/2015/05/21/objective-c-class-dump-an-zhuang-he-shi-yong-fang-fa/" target="_blank" rel="noopener">Objective-C Class-dump 安装和使用方法(原创)</a>.</p>
 <p>另外还有一个反编译、反汇编和调试神器：Hopper。可以查看源码。</p>
-<p>##疑问<br>1.执行脚本文件时报如下错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion.py: Permission denied</span><br></pre></td></tr></table></figure></p>
+<h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><p>1.执行脚本文件时报如下错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion.py: Permission denied</span><br></pre></td></tr></table></figure></p>
 <p>解决方法：<br>1、打开终端。<br>2、cd到目标文件夹。<br>3、输入 chmod 755 你的文件名.sh。</p>
-<p>##Demo<br>本文demo：<a href="https://github.com/flowyears/iOS_CodeEncrypt" target="_blank" rel="noopener">iOS_CodeEncrypt</a></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>本文demo：<a href="https://github.com/flowyears/iOS_CodeEncrypt" target="_blank" rel="noopener">iOS_CodeEncrypt</a></p>
 
       
     </div>
@@ -449,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/images/avatar.jpg"
@@ -525,6 +533,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#完整性校验"><span class="nav-number">1.</span> <span class="nav-text">完整性校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#越狱检测"><span class="nav-number">2.</span> <span class="nav-text">越狱检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双击home键后app缩略视图模糊处理"><span class="nav-number">3.</span> <span class="nav-text">双击home键后app缩略视图模糊处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法名混淆"><span class="nav-number">4.</span> <span class="nav-text">方法名混淆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#明文字符串混淆"><span class="nav-number">5.</span> <span class="nav-text">明文字符串混淆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译"><span class="nav-number">6.</span> <span class="nav-text">反编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问"><span class="nav-number">7.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">8.</span> <span class="nav-text">Demo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
